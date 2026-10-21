@@ -1,10 +1,12 @@
 # shopify-schema-audit
 
-Checks the Product structured data (JSON-LD) a live Shopify store actually serves, and tells you what Google Search Console will complain about. Zero dependencies, Node 18+.
+Checks what a live store actually serves and tells you what Google Search Console (and EU/accessibility rules) will complain about. Works on Shopify, WooCommerce, Squarespace, BigCommerce and Wix (Shopify via /products.json, the others via the product sitemap). Zero dependencies, Node 18+.
 
 ```
-node bin/audit.mjs https://your-store.com --sample 12
+node bin/audit.mjs https://your-store.com --sample 12 --checks schema,alt,gpsr
 ```
+
+Checks (`--checks`, default `schema`): `schema` = Product structured data; `alt` = product photos with no alt text; `gpsr` = EU/UK-facing product pages with no manufacturer / responsible-person details (EU GPSR). Checks live in `lib/checks.mjs`; add one there.
 
 Example, run 2026-10-22 on a real store (6 product pages sampled):
 
