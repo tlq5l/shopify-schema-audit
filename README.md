@@ -22,6 +22,8 @@ It flags: no Product schema, duplicate Product blocks (theme plus review app), m
 
 The audit tells you what is missing. Shopify's own theme markup does not include your shipping and return details (a Shopify Community answer confirms there is no automatic way to add them), which is why Search Console keeps emailing "Missing field shippingDetails" and "hasMerchantReturnPolicy".
 
+**[Buy Product Schema Pro, $29 one-time](https://buy.stripe.com/00wfZggNm4qU9Vu07A5gc01)**: one Liquid snippet that adds shippingDetails, hasMerchantReturnPolicy and priceValidUntil for every variant.
+
 Product Schema Pro is one Liquid snippet you paste into your theme: a complete ProductGroup with a Product and Offer for every variant, shipping details, return policy, price validity, brand, SKU, GTIN/MPN, images and review rating (from the standard review metafields). Edit about ten settings at the top, render it once, remove the old block. Install guide included (10 minutes).
 
 - Same job as the Shopify apps that charge monthly: JSON-LD Express $9.99/month, MageBytes JSON-LD Schema $9.99 to $99.99/month, SA SEO JSON-LD from $2.99/month (prices from their App Store listings, 2026-10-22). $29 once is about 3 months of the middle one, forever.
