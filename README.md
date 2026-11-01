@@ -8,6 +8,8 @@ node bin/audit.mjs https://your-store.com --sample 12 --checks schema,alt,gpsr
 
 Checks (`--checks`, default `schema`): `schema` = Product structured data; `alt` = product photos with no alt text; `gpsr` = EU/UK-facing product pages with no manufacturer / responsible-person details (EU GPSR). Checks live in `lib/checks.mjs`; add one there.
 
+For what each `schema` check reads from the page and how it maps to Search Console's Product merchant-listing properties, see [docs/search-console-checks.md](docs/search-console-checks.md?ref=shopify-schema-audit-search-console-map).
+
 Example, run 2026-10-22 on a real store (6 product pages sampled):
 
 ```
