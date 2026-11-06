@@ -10,6 +10,8 @@ Checks (`--checks`, default `schema`): `schema` = Product structured data; `alt`
 
 For what each `schema` check reads from the page and how it maps to Search Console's Product merchant-listing properties, see [docs/search-console-checks.md](docs/search-console-checks.md?ref=shopify-schema-audit-search-console-map).
 
+To run the audit on a schedule in CI and read its exit codes and `--json` output, see [docs/run-in-ci.md](docs/run-in-ci.md?ref=shopify-schema-audit-ci-how-to).
+
 Example, run 2026-10-22 on a real store (6 product pages sampled):
 
 ```
