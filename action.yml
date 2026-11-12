@@ -1,0 +1,29 @@
+name: 'Shopify schema audit'
+description: 'Checks what a live store serves: Product structured data, product photo alt text and EU GPSR manufacturer details. Fails the step when a Search Console-relevant problem is found.'
+branding:
+  icon: 'search'
+  color: 'blue'
+
+inputs:
+  url:
+    description: 'Store URL including https://, for example https://your-store.com'
+    required: true
+  sample:
+    description: 'Number of product pages to check (a whole number, 1 or more)'
+    required: false
+    default: '12'
+  checks:
+    description: 'Comma-separated checks to run: schema, alt, gpsr'
+    required: false
+    default: 'schema,alt,gpsr'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run shopify-schema-audit
+      shell: bash
+      env:
+        AUDIT_URL: ${{ inputs.url }}
+        AUDIT_SAMPLE: ${{ inputs.sample }}
+        AUDIT_CHECKS: ${{ inputs.checks }}
+      run: node "$GITHUB_ACTION_PATH/bin/audit.mjs" "$AUDIT_URL" --sample "$AUDIT_SAMPLE" --checks "$AUDIT_CHECKS"
