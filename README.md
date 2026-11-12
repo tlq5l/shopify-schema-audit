@@ -22,6 +22,35 @@ https://coventrytowelradiator.shop: 6 of 250 products checked (0 failed to load)
 
 It flags: no Product schema, duplicate Product blocks (theme plus review app), missing offers, shippingDetails, hasMerchantReturnPolicy, priceValidUntil, GTIN/MPN, brand, SKU, image, rating. Exit code 1 if a Search Console-relevant problem is found. `--json` for machine output.
 
+## Run in GitHub Actions
+
+This repo ships a composite action (`action.yml`). It runs the same CLI as above on a GitHub runner and fails the step when a blocking problem is found (exit code 1).
+
+```yaml
+name: Shopify schema audit
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # Mondays, 08:00 UTC
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tlq5l/shopify-schema-audit@main
+        with:
+          url: https://your-store.com
+          sample: 12
+          checks: schema,alt,gpsr
+```
+
+Inputs:
+
+- `url` (required): store URL, including `https://`.
+- `sample` (default `12`): number of product pages to check.
+- `checks` (default `schema,alt,gpsr`): comma-separated list of checks.
+
+The step exits with the CLI's code: `0` no blocking problem, `1` a blocking problem was found, `2` usage error (for example a bad URL or check name), `3` no product pages could be checked. The step needs Node.js on the runner; GitHub-hosted runners include it. `@main` follows the latest commit, and no release tags exist yet.
+
 ## Fix it: Shopify Product Schema Pro ($29, one time)
 
 The audit tells you what is missing. Shopify's own theme markup does not include your shipping and return details (a Shopify Community answer confirms there is no automatic way to add them), which is why Search Console keeps emailing "Missing field shippingDetails" and "hasMerchantReturnPolicy".
